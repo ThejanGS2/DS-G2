@@ -45,6 +45,8 @@
     transform: translateY(0);
 }
 
+
+
 /* --- Reset & Base Styles --- */
 * {
     margin: 0;
@@ -496,6 +498,8 @@ img {
     box-shadow: var(--shadow-lg);
 }
 
+
+
 .card-image {
     width: 100%;
     height: 100%;
@@ -786,4 +790,292 @@ img {
 .faq-item.active .faq-toggle {
     transform: rotate(45deg);
     /* Turn + into x */
+}
+
+/* --- About Us Page Components --- */
+
+/* Mission Section */
+.mission.section {
+    padding: 6rem 0;
+    /* Increase padding */
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 4rem;
+    align-items: flex-start;
+    /* Align to top for better text flow */
+}
+
+.mission-content {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--primary-color);
+    /* Add accent border */
+}
+
+.mission-content h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+    font-size: 2rem;
+}
+
+.mission-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+}
+
+/* Our Story Section */
+.story.section {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    /* Subtle gradient */
+    padding: 8rem 0;
+}
+
+.story-content .section-title {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+
+.story-text p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #4a5568;
+    margin-bottom: 2rem;
+}
+
+/* Features/Why Choose Us */
+.features.section {
+    padding: 6rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Wider cards */
+    gap: 2.5rem;
+    margin-top: 4rem;
+}
+
+.feature-item {
+    padding: 3rem 2rem;
+    background: var(--white);
+    border-radius: 16px;
+    /* Smooth corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Softer shadow */
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: #f0f9ff;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.feature-item h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: var(--text-dark);
+}
+
+.feature-item p {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Utilities */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+/* --- 3D Perspective Carousel --- */
+.carousel-container {
+    height: 400vh;
+    /* Scroll distance */
+    position: relative;
+    background: #f0fdfa;
+    /* Light teal background */
+}
+
+.sticky-wrapper {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    perspective: 1500px;
+    /* Depth of field */
+}
+
+.perspective-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.card-track {
+    display: flex;
+    gap: 40px;
+    /* Space between cards */
+    padding-left: 50vw;
+    /* Start with first card centered (minus half card width approx) */
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.destination-card {
+    /* Fixed Dimensions for the carousel */
+    flex: 0 0 320px;
+    height: 480px;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.15);
+    /* Shadow to left/bottom */
+
+    /* 3D Transform */
+    transform: rotateY(-25deg) scale(0.9);
+    /* Angled look from reference */
+    transform-origin: center left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.destination-card:hover {
+    transform: rotateY(0deg) scale(1.05) translateZ(50px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Internal Card Styles (Retained/Refined) */
+.card-image {
+    height: 60%;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40%;
+    background: var(--white);
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-link {
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .carousel-container {
+        height: auto;
+    }
+
+    .sticky-wrapper {
+        position: relative;
+        height: auto;
+        padding: 2rem 0;
+        perspective: none;
+        overflow: visible;
+    }
+
+    .perspective-container {
+        display: block;
+    }
+
+    .card-track {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 1rem;
+        transform: none !important;
+        /* Disable JS transform on mobile */
+    }
+
+    .destination-card {
+        transform: none;
+        flex: none;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .destination-card:hover {
+        transform: translateY(-5px);
+    }
 }
