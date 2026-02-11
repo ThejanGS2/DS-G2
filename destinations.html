@@ -50,90 +50,88 @@
         </nav>
     </div>
 
-    <!-- 3D Perspective Carousel -->
-    <div class="carousel-container">
-        <div class="sticky-wrapper">
-            <div class="perspective-container">
-                <div class="card-track">
-                    <!-- Card 1 -->
-                    <article class="destination-card">
-                        <div class="card-image">
-                            <img src="assets/Sigiriya.png" alt="Sigiriya Rock Fortress">
-                            <div class="card-badge">Cultural</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Sigiriya</h3>
-                            <p>The ancient rock fortress and palace ruin.</p>
-                            <a href="#" class="card-link">Explore &rarr;</a>
-                        </div>
-                    </article>
+    <!-- 3D Cylinder Container -->
+    <div class="cylinder-viewport">
+        <div class="cylinder-stage">
+            <div class="cylinder">
+                <!-- Original unique cards (will be duplicated by JS) -->
+                <article class="cylinder-card">
+                    <div class="card-image">
+                        <img src="assets/Sigiriya.png" alt="Sigiriya Rock Fortress">
+                        <div class="card-badge">Cultural</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Sigiriya</h3>
+                        <p>The ancient rock fortress and palace ruin surrounded by the remains of an extensive network
+                            of gardens.</p>
+                        <a href="#" class="card-link">Explore <span class="arrow">&rarr;</span></a>
+                    </div>
+                </article>
 
-                    <!-- Card 2 -->
-                    <article class="destination-card">
-                        <div class="card-image">
-                            <img src="assets/Ella.png" alt="Ella Train">
-                            <div class="card-badge">Nature</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Ella</h3>
-                            <p>Famous for its tea plantations and bridges.</p>
-                            <a href="#" class="card-link">Explore &rarr;</a>
-                        </div>
-                    </article>
+                <article class="cylinder-card">
+                    <div class="card-image">
+                        <img src="assets/Ella.png" alt="Ella Train">
+                        <div class="card-badge">Nature</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Ella</h3>
+                        <p>A small town in the Badulla District, famous for its tea plantations and the Nine Arch
+                            Bridge.</p>
+                        <a href="#" class="card-link">Explore <span class="arrow">&rarr;</span></a>
+                    </div>
+                </article>
 
-                    <!-- Card 3 -->
-                    <article class="destination-card">
-                        <div class="card-image">
-                            <img src="assets/Mirissa.png" alt="Mirissa Beach">
-                            <div class="card-badge">Beach</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Mirissa</h3>
-                            <p>Whale watching and surfing paradise.</p>
-                            <a href="#" class="card-link">Explore &rarr;</a>
-                        </div>
-                    </article>
+                <article class="cylinder-card">
+                    <div class="card-image">
+                        <img src="assets/Mirissa.png" alt="Mirissa Beach">
+                        <div class="card-badge">Beach</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Mirissa</h3>
+                        <p>A small town on the south coast, a popular tourist destination for whale watching and
+                            surfing.</p>
+                        <a href="#" class="card-link">Explore <span class="arrow">&rarr;</span></a>
+                    </div>
+                </article>
 
-                    <!-- Card 4 -->
-                    <article class="destination-card">
-                        <div class="card-image">
-                            <img src="assets/hiking.png" alt="Horton Plains">
-                            <div class="card-badge">Hiking</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Horton Plains</h3>
-                            <p>Misty cloud forests and World's End.</p>
-                            <a href="#" class="card-link">Explore &rarr;</a>
-                        </div>
-                    </article>
+                <article class="cylinder-card">
+                    <div class="card-image">
+                        <img src="assets/hiking.png" alt="Horton Plains">
+                        <div class="card-badge">Hiking</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Horton Plains</h3>
+                        <p>Discover the breathtaking World's End precipice and trek through misty cloud forests rich in
+                            biodiversity.</p>
+                        <a href="#" class="card-link">Explore <span class="arrow">&rarr;</span></a>
+                    </div>
+                </article>
 
-                    <!-- Card 5 -->
-                    <article class="destination-card">
-                        <div class="card-image">
-                            <img src="assets/hikkaduwa.png" alt="Hikkaduwa Nightlife">
-                            <div class="card-badge">Party</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Hikkaduwa</h3>
-                            <p>Vibrant nightlife and coral reefs.</p>
-                            <a href="#" class="card-link">Explore &rarr;</a>
-                        </div>
-                    </article>
+                <article class="cylinder-card">
+                    <div class="card-image">
+                        <img src="assets/hikkaduwa.png" alt="Hikkaduwa Nightlife">
+                        <div class="card-badge">Party</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Hikkaduwa</h3>
+                        <p>Experience the vibrant nightlife, beach parties, and festivals in the coastal town of
+                            Hikkaduwa.</p>
+                        <a href="#" class="card-link">Explore <span class="arrow">&rarr;</span></a>
+                    </div>
+                </article>
 
-                    <!-- Card 6 (Added for length) -->
-                    <article class="destination-card">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1588258524675-a48a3f89839c?q=80&w=1000&auto=format&fit=crop"
-                                alt="Yala National Park">
-                            <div class="card-badge">Wildlife</div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Yala</h3>
-                            <p>Leopards and diverse wildlife safaris.</p>
-                            <a href="#" class="card-link">Explore &rarr;</a>
-                        </div>
-                    </article>
-                </div>
+                <article class="cylinder-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1588258524675-a48a3f89839c?q=80&w=1000&auto=format&fit=crop"
+                            alt="Yala National Park">
+                        <div class="card-badge">Wildlife</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Yala</h3>
+                        <p>Leopards and diverse wildlife safaris.</p>
+                        <a href="#" class="card-link">Explore <span class="arrow">&rarr;</span></a>
+                    </div>
+                </article>
             </div>
         </div>
     </div>

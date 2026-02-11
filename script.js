@@ -1,6 +1,160 @@
 console.log("Travel Sri Lanka Guest Page Loaded");
 
-// Motion Layer Scroller (Destinations Page)
+// 3D Horizontal Carousel (Destinations Page)
+const carouselContainer = document.querySelector('.cylinder');
+// Using same container class 'cylinder' to avoid breaking HTML,
+// logically it acts as the carousel track now.
+
+if (carouselContainer) {
+    const originalCards = document.querySelectorAll('.cylinder-card');
+
+    if (originalCards.length > 0) {
+        // 1. Clone cards for infinite scroll illusion
+        // We need enough copies to cover the screen width + buffer
+        const targetCount = 15; // Fewer cards needed for linear view than dense cylinder
+        const currentCount = originalCards.length;
+
+        for (let i = 0; i < targetCount - currentCount; i++) {
+            const sourceCard = originalCards[i % currentCount];
+            const clone = sourceCard.cloneNode(true);
+            carouselContainer.appendChild(clone);
+        }
+
+        const allCards = document.querySelectorAll('.cylinder-card');
+        const totalCards = allCards.length;
+
+        // 2. Configuration
+        const cardWidth = 330; // Spacing between cards
+        const totalWidth = totalCards * cardWidth;
+
+        // 3. Interaction State
+        let currentScroll = 0;
+        let targetScroll = 0;
+        let isDragging = false;
+        let startX = 0;
+        let lastX = 0;
+
+        let autoScrollSpeed = 1;
+        let isInteracting = false;
+        let idleTimer = null;
+
+        // Tilt State
+        let currentTilt = 0;
+        let targetTilt = 0;
+
+        // Mouse Wheel
+        window.addEventListener('wheel', (e) => {
+            targetScroll += e.deltaY * 0.5; // Translate scroll Y to horizontal movement
+            isInteracting = true;
+            resetIdleTimer();
+        });
+
+        // Mouse Move (Tilt)
+        window.addEventListener('mousemove', (e) => {
+            const y = e.clientY / window.innerHeight;
+            targetTilt = (y - 0.5) * 20;
+        });
+
+        // Touch
+        const viewport = document.querySelector('.cylinder-viewport');
+        viewport.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            isInteracting = true;
+            startX = e.touches[0].clientX;
+            lastX = startX;
+            resetIdleTimer();
+        });
+
+        viewport.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const currentX = e.touches[0].clientX;
+            const deltaX = currentX - lastX;
+
+            targetScroll -= deltaX * 1.5; // Drag opposes scroll direction
+            lastX = currentX;
+            e.preventDefault();
+        });
+
+        viewport.addEventListener('touchend', () => {
+            isDragging = false;
+            resetIdleTimer();
+        });
+
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => {
+                isInteracting = false;
+            }, 2000);
+        }
+
+        // Animation Loop
+        function animate() {
+            // Auto-scroll
+            if (!isInteracting && !isDragging) {
+                targetScroll += autoScrollSpeed;
+            }
+
+            // Smoothing
+            currentScroll += (targetScroll - currentScroll) * 0.08;
+            currentTilt += (targetTilt - currentTilt) * 0.1;
+
+            // Apply Tilt to container (X-axis)
+            carouselContainer.style.transform = `rotateX(${currentTilt}deg)`;
+
+            const viewportCenter = window.innerWidth / 2;
+
+            allCards.forEach((card, index) => {
+                // Calculate position on the infinite track
+                // itemPos is the abstract Base X position
+                const itemBaseX = index * cardWidth;
+
+                // Adjusted X relative to scroll
+                // We use modulo to wrap around
+                let relativeX = (itemBaseX - currentScroll) % totalWidth;
+
+                // Handle negative wrap
+                if (relativeX < -totalWidth / 2) relativeX += totalWidth;
+                if (relativeX > totalWidth / 2) relativeX -= totalWidth;
+
+                // Center the carousel
+                // relativeX = 0 means card is AT the anchor point.
+                // We want anchor point to be viewport center.
+                // But we are plotting within the 'carouselContainer' which is centered?
+
+                const xPos = relativeX;
+
+                // 3D Transforms based on distance from center (0)
+                const distFromCenter = Math.abs(xPos);
+
+                // Max limits for effects
+                const maxDist = 1000; // Increased range so effects are more gradual
+                const progress = Math.min(distFromCenter / maxDist, 1);
+
+                // Calculate properties
+                // Z: pushes back less aggressively
+                const z = -progress * 250; // Was 600, now 250 to keep them visible
+
+                // RotateY: reduced rotation to keep content visible
+                let rotateY = 0;
+                if (xPos > 0) rotateY = -progress * 30; // Was 60, now 30
+                else rotateY = progress * 30;
+
+                // Opacity / Blur: Keep them more opaque
+                const opacity = 1 - (progress * 0.2); // Only fades to 0.8
+                const blur = progress * 2; // Subtle blur (2px)
+
+                card.style.transform = `translateX(${xPos}px) translateZ(${z}px) rotateY(${rotateY}deg)`;
+                card.style.filter = `brightness(${opacity}) blur(${blur}px)`;
+                card.style.zIndex = Math.round(100 - progress * 100); // Front cards on top
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+}
+
+// Motion Layer Scroller (Index Page)
 const motionScroller = document.querySelector('.motion-scroller');
 
 if (motionScroller) {
